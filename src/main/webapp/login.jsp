@@ -1,102 +1,165 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="ISO-8859-1">
-    <title>User Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - YouTube</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style type="text/css">
+        :root {
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
+            --bg-color: #05060f;
+            --card-bg: #0a0c1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
         body {
-        	background: url("image1/jj.jpg");
-            font-family: 'Hind', sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
+            background-color: var(--bg-color);
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
+            color: var(--text-primary);
         }
 
-        .login-container {
-            max-width: 300px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .login-card {
+            width: 450px;
+            padding: 48px 40px 36px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            color: var(--accent-color);
+            font-size: 48px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
         }
 
         h1 {
             font-size: 24px;
+            font-weight: 500;
+            margin: 0 0 8px;
         }
 
-        form {
-            text-align: center;
+        .subtitle {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 24px;
+            text-align: left;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 13px 15px;
+            font-size: 16px;
+            background-color: #020617;
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.2s;
         }
 
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
+        input:focus {
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        .forgot-link {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            margin-bottom: 40px;
             cursor: pointer;
-            display: inline-block;
-            margin-right: 10px;
         }
 
-        input[type="submit"]:hover {
-            background-color: #0056b3;
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #007BFF;
-        }
-
-        .error {
-            color: #FF0000;
-        }
-
-        input[type="button"] {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
+        .create-account {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
             cursor: pointer;
-            display: inline-block;
-            margin-left: 10px;
         }
 
-        input[type="button"]:hover {
-            background-color: #0056b3;
+        .btn-next {
+            background-color: var(--accent-color);
+            color: #05060f;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-next:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 450px) {
+            .login-card {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login Page</h1>
+    <div class="login-card">
+        <div class="logo">
+            <i class="fab fa-youtube"></i>
+        </div>
+        <h1>Sign in</h1>
+        <p class="subtitle">to continue to VideoHub</p>
+        
         <form action="login" method="post">
-            <label for="uid">User Name:</label>
-            <input type="text" id="uid" name="uid" placeholder="Enter your username" required>
-            <br>
+            <div class="input-group">
+                <input type="text" id="uid" name="uid" placeholder="Username" required>
+            </div>
 
-            <label for = "pass">Password:</label>
-            <input type="password" id="pass" name="pass" placeholder="Enter your password" required>
-            <br>
+            <div class="input-group">
+                <input type="password" id="pass" name="pass" placeholder="Password" required>
+            </div>
 
-            <div style="text-align: center;">
-                <input type="submit" name="submit" value="Login">
-                <input type="button" name="register" value="Register" onclick="window.location.href='userinsert.jsp';">
+            <a href="#" class="forgot-link">Forgot password?</a>
+
+            <div class="actions">
+                <a href="userinsert.jsp" class="create-account">Create account</a>
+                <button type="submit" class="btn-next">Login</button>
             </div>
         </form>
     </div>

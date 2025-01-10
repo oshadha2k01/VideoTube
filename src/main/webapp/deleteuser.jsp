@@ -50,7 +50,6 @@
        String uFirstName = request.getParameter("fname");
        String uLastName = request.getParameter("lname");
        String uName = request.getParameter("uname");
-       String uPassword = request.getParameter("pass");
        String uEmail = request.getParameter("email");
        String uPhoneNo = request.getParameter("phone");
        

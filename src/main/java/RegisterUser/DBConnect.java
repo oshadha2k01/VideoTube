@@ -2,29 +2,39 @@ package RegisterUser;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnect {
 	
-	private static String url = "jdbc:mysql://localhost:3306/video_browsing";
-	private static String userName = "root";
-	private static String password = "Oshadha22700@";
-	private static Connection con;
+	private static final String DEFAULT_URL = "jdbc:mysql://localhost:3306/video_browsing";
+	private static final String DEFAULT_USER = "root";
+	private static final String DEFAULT_PASSWORD = "";
 	
-	public static Connection getConnection() {
+	private static String getEnvOrDefault(String key, String defaultValue) {
+		String value = System.getenv(key);
+		if (value == null || value.trim().isEmpty()) {
+			return defaultValue;
+		}
+		return value;
+	}
+
+	public static Connection getConnection() throws SQLException {
 		
 		try {
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			
-			con = DriverManager.getConnection(url, userName, password);
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			
 		}
 		catch (Exception e) {
-			System.out.println("Database connection is not success!!!");
+			throw new SQLException("Database driver load failed.", e);
 		}
 		
-		return con;
+		String url = getEnvOrDefault("VIDEOHUB_DB_URL", DEFAULT_URL);
+		String userName = getEnvOrDefault("VIDEOHUB_DB_USER", DEFAULT_USER);
+		String password = getEnvOrDefault("VIDEOHUB_DB_PASSWORD", DEFAULT_PASSWORD);
+
+		return DriverManager.getConnection(url, userName, password);
 	}
 
 }

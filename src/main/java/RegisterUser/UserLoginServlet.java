@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 
 @WebServlet("/UserLoginServlet")
@@ -32,6 +33,16 @@ public class UserLoginServlet extends HttpServlet {
 		if (isTrue == true) {
 			List<User> usDetails = UserDBUtil.getUser(userName);
 			request.setAttribute("usDetails", usDetails);
+			
+			// Generate JWT Token
+			String token = JWTUtil.generateToken(userName, "USER");
+			
+			// Create Cookie
+			Cookie authCookie = new Cookie("authToken", token);
+			authCookie.setHttpOnly(true); // Protect against XSS
+			authCookie.setMaxAge(3600 * 2); // 2 hours
+			authCookie.setPath("/"); // Available for all pages
+			response.addCookie(authCookie);
 			
 			RequestDispatcher dis = request.getRequestDispatcher("useraccount.jsp");
 			dis.forward(request, response);

@@ -64,7 +64,6 @@
        String uFirstName = request.getParameter("fname");
        String uLastName = request.getParameter("lname");
        String uName = request.getParameter("uname");
-       String uPassword = request.getParameter("pass");
        String uEmail = request.getParameter("email");
        String uPhoneNo = request.getParameter("phone");
        
@@ -86,7 +85,7 @@
         <input type="text" id="uname" name="uname" value="<%= uName %>">
         <br>
         <label for="pass">Password</label>
-        <input type="password" id="pass" name="pass" value="<%= uPassword %>">
+        <input type="password" id="pass" name="pass" placeholder="Leave blank to keep current password">
         <br>
         <label for="email">Email</label>
         <input type="text" id="email" name="email" value="<%= uEmail %>">
