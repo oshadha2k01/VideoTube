@@ -1,4 +1,4 @@
-# VIDEOHUB
+# VIDEOTUBE
 
 VIDEOTUBE is a Java Servlet + JSP web application that implements user account management and a simple video metadata + streaming prototype suitable for local testing and demos.
 
