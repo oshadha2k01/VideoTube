@@ -1,4 +1,4 @@
-# VIDEOHUB
+# VIDEOTUBE
 
 VIDEOHUB is a Java Servlet + JSP web application for user account management in an online video browsing platform.
 
